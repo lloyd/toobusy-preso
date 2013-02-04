@@ -1,31 +1,13 @@
 <!doctype html>
 
-<!--
-    
-    So you'd like to know how to use impress.js?
-    
-    You've made the first, very important step - you're reading the source code.
-    And that's how impress.js presentations are built - with HTML and CSS code.
-    
-    Believe me, you need quite decent HTML and CSS skills to be able to use impress.js effectively.
-    And what is even more important, you need to be a designer, too, because there are no default
-    styles for impress.js presentations, there is no default or automatic layout for them.
-    
-    You need to design and build it by hand.
-    
-    So...
-    
-    Would you still like to know how to use impress.js?
-    
--->
 
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title>
-    
+    <title>Don't Melt</title>
+
     <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
     <meta name="author" content="Bartek Szopka" />
 
@@ -147,8 +129,8 @@ body, p, em, i, .step {
         element should be rotated by 90 degrees clockwise.
         
     -->
-    <div id="hypothesis" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
-        <strong>The Hypothesis:</strong> <br/>
+    <div id="goal" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
+        <strong>Our Goal:</strong> <br/>
         <p>During extreme traffic we should stay responsive for <em>as many users as possible</em> and block the remainder.
         </p>
     </div>
@@ -163,7 +145,7 @@ body, p, em, i, .step {
         <p>We want a <b>drop-in</b> solution to instantly make an existing server <b>fail with grace</b>.</p>
     </div>
 
-    <div id="the-code" class="step" data-x="6000" data-y="4000" data-scale="6">
+    <div id="usage" class="step" data-x="6000" data-y="4000" data-scale="6">
         <p>We want to use it like this:</p>
         <pre style="font-family: monospace, courier, fixed; font-size: .5em; line-height: 1.5;"><code class="prettyprint">
 var toobusy = require('toobusy');
@@ -196,7 +178,7 @@ while there are still events to process:
     <div id="event_loop_lag" class="step" data-x="6000" data-y="1500" data-scale="4" data-rotate-y="90">
         <strong>Event Loop Lag!</strong>
         <p>By measuring how long it takes a job to get through the event loop
-          you can get an understanding of <em>remaining capacity</em>,
+          you can get an understanding of how <em>busy</em> your process is,
           regardless of system load.</p>
     </div>
 
@@ -206,7 +188,42 @@ while there are still events to process:
       <img src="i/toobusy-good.png">
     </div>
 
-    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="12">
+    <div id="successful_requests" class="step" data-x="-2000" data-y="2325" data-scale="1" data-rotate="90">
+      <p> Request Blocking Visualized: </p>
+      <br>
+      <img style="width: 800px;" src="i/success-responses.png">
+    </div>
+
+    <div id="implementation" class="step" data-x="-2000" data-y="5325" data-scale="4" data-rotate="180">
+      <strong>Implementation</strong>
+      <br><br>
+      <p>Poll event loop every 500ms.</p>
+      <p>Calculate dampened <strong>current lag</strong>.</p>
+      <p>Configured lag <strong>high water mark</strong>.</p>
+    </div>
+
+    <div id="code" class="step" data-x="10000" data-y="7000" data-scale="6">
+        <pre style="font-family: monospace, courier, fixed; font-size: .5em; line-height: 1.5;"><code class="prettyprint">
+    bool block = false;
+    if (s_currentLag > HIGH_WATER_MARK_MS) {
+        // probabilistically block requests proportional to how
+        // far behind we are.
+        double pctToBlock = ((s_currentLag - HIGH_WATER_MARK_MS) /
+                             (double) HIGH_WATER_MARK_MS) * 100.0;
+        double r = (rand() / (double) RAND_MAX) * 100.0;
+        if (r < pctToBlock) block = true;
+    }
+    return block ? True() : False();
+        </code></pre>
+    </div>
+
+    <div id="finale" class="step" data-x="2000" data-y="9000" data-scale="4" data-rotate="90">
+        <p>Use node-toobusy to <strong>pre-emptively block</strong> requests and <strong>not melt</strong>.
+           And try hacking on it, because <strong>it's fun</strong>.</p>
+        <p><a href="https://github.com/lloyd/node-toobusy">github.com/lloyd/node-toobusy</a><br/></p>
+    </div>
+
+    <div id="overview" class="step" data-x="4000" data-y="3000" data-scale="16">
     </div>
 
 </div>
@@ -293,49 +310,3 @@ if ("ontouchstart" in document.documentElement) {
 
 </body>
 </html>
-
-<!--
-    
-    Now you know more or less everything you need to build your first impress.js presentation, but before
-    you start...
-    
-    Oh, you've already cloned the code from GitHub?
-    
-    You have it open in text editor?
-    
-    Stop right there!
-    
-    That's not how you create awesome presentations. This is only a code. Implementation of the idea that
-    first needs to grow in your mind.
-    
-    So if you want to build great presentation take a pencil and piece of paper. And turn off the computer.
-    
-    Sketch, draw and write. Brainstorm your ideas on a paper. Try to build a mind-map of what you'd like
-    to present. It will get you closer and closer to the layout you'll build later with impress.js.
-    
-    Get back to the code only when you have your presentation ready on a paper. It doesn't make sense to do
-    it earlier, because you'll only waste your time fighting with positioning of useless points.
-    
-    If you think I'm crazy, please put your hands on a book called "Presentation Zen". It's all about 
-    creating awesome and engaging presentations.
-    
-    Think about it. 'Cause impress.js may not help you, if you have nothing interesting to say.
-    
--->
-
-<!--
-    
-    Are you still reading this?
-    
-    For real?
-    
-    I'm impressed! Feel free to let me know that you got that far (I'm @bartaz on Twitter), 'cause I'd like
-    to congratulate you personally :)
-    
-    But you don't have to do it now. Take my advice and take some time off. Make yourself a cup of coffee, tea,
-    or anything you like to drink. And raise a glass for me ;)
-    
-    Cheers!
-    
--->
-
