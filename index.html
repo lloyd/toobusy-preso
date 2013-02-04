@@ -132,7 +132,7 @@ body, p, em, i, .step {
         down (4 times) to make it back to it's correct size.
         
     -->
-    <div id="intro" class="step" data-x="0" data-y="0" data-scale="4">
+    <div id="not_melting" class="step" data-x="0" data-y="0" data-scale="4">
       <p>
         A Node.JS Server that <strong>Won't Melt</strong>
       </p>
@@ -147,23 +147,23 @@ body, p, em, i, .step {
         element should be rotated by 90 degrees clockwise.
         
     -->
-    <div id="its" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
+    <div id="hypothesis" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
         <strong>The Hypothesis:</strong> <br/>
         <p>During extreme traffic we should stay responsive for <em>as many users as possible</em> and block the remainder.
         </p>
     </div>
 
-    <div id="big" class="step" data-x="3000" data-y="0" data-rotate="270" data-scale="4">
+    <div id="if_we_do_nothing" class="step" data-x="3000" data-y="0" data-rotate="270" data-scale="4">
       <p style="width: 800px;"> Breaking Bad: </p>
       <br>
       <img src="i/toobusy.png">
     </div>
 
-    <div id="imagination" class="step" data-x="6700" data-y="-300" data-scale="6">
+    <div id="drop-in" class="step" data-x="6700" data-y="-300" data-scale="6">
         <p>We want a <b>drop-in</b> solution to instantly make an existing server <b>fail with grace</b>.</p>
     </div>
 
-    <div id="the_code" class="step" data-x="6000" data-y="4000" data-scale="6">
+    <div id="the-code" class="step" data-x="6000" data-y="4000" data-scale="6">
         <p>We want to use it like this:</p>
         <pre style="font-family: monospace, courier, fixed; font-size: .5em; line-height: 1.5;"><code class="prettyprint">
 var toobusy = require('toobusy');
@@ -175,7 +175,7 @@ app.use(function(req, res, next) {
         </code></pre>
     </div>
 
-    <div id="its-in-3d" class="step" data-x="6200" data-y="7000" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+    <div id="how_do_we_build_it" class="step" data-x="6200" data-y="7000" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
       <strong> How can you build this? </strong>
       <br><br>
       <p>Current system load?</p>
@@ -183,7 +183,7 @@ app.use(function(req, res, next) {
       <p>Response time variance?</p>
     </div>
 
-    <div id="how_it_works" class="step" data-x="9000" data-y="1500" data-scale="4" data-rotate-z="180">
+    <div id="how_node_works" class="step" data-x="9000" data-y="1500" data-scale="4" data-rotate-z="180">
         <strong>How Node.JS Works</strong>
         <pre style="font-family: monospace, courier, fixed; font-size: .5em; line-height: 1.5;"><code class="prettyprint">
 while there are still events to process:
@@ -200,27 +200,12 @@ while there are still events to process:
           regardless of system load.</p>
     </div>
 
-    <div id="tiny" class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
+    <div id="breaking_good" class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
       <p style="width: 800px;"> Breaking Good: </p>
       <br>
       <img src="i/toobusy-good.png">
     </div>
 
-    <!--
-        
-        So to make a summary of all the possible attributes used to position presentation steps, we have:
-        
-        * `data-x`, `data-y`, `data-z` - they define the position of **the center** of step element on
-            the canvas in pixels; their default value is 0;
-        * `data-rotate-x`, `data-rotate-y`, 'data-rotate-z`, `data-rotate` - they define the rotation of
-            the element around given axis in degrees; their default value is 0; `data-rotate` and `data-rotate-z`
-            are exactly the same;
-        * `data-scale` - defines the scale of step element; default value is 1
-        
-        These values are used by impress.js in CSS transformation functions, so for more information consult
-        CSS transfrom docs: https://developer.mozilla.org/en/CSS/transform
-        
-    -->
     <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="12">
     </div>
 
